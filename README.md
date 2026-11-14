@@ -39,6 +39,14 @@ No Windows, se as conversas não aparecerem, use **Selecionar executável do Cod
 
 O modo de voz F8 pertence ao Codex. A Capri se cala durante ele. Se pedir confirmação, feche o F8 antes de usar **F8 está fechado: liberar voz**. Isso não ativa o microfone nem aprova comandos.
 
+### Chat aberto, mas a Capri não acompanha
+
+Na **0.4.0-preview.6**, `notLoaded` aparece como **Proxy conectado · chat não carregado**. A conexão é mantida e reconsultada; a Capri não força carregar a conversa do disco para simular uma assinatura.
+
+Abra **Conversa acompanhada → Atualizar conversas abertas**. Se o chat desejado não aparecer, use **Copiar diagnóstico de conexão** e informe também a versão do Codex Desktop. O diagnóstico contém estados e versão, sem conteúdo, token, caminho pessoal ou ID do chat. Somente se o Desktop usar outra pasta de dados, escolha-a em **Pasta de dados do Codex…**; **Usar pasta padrão do Codex** desfaz essa seleção. Não escolha a pasta do projeto.
+
+O teste recebido da prévia 5 confirmou geração CPU e áudio no fone no Windows 10 x64. O mesmo teste encontrou chat ativo no Desktop, mas não carregado no proxy. A causa dessa diferença ainda está em investigação; esta correção não confirma narração desse chat nem valida NVIDIA.
+
 ### Erro de voz no Windows: o que fazer
 
 A partir da **0.4.0-preview.4**, as falhas têm códigos específicos. A **prévia 5** acrescenta configuração pelo aplicativo:
