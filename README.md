@@ -29,30 +29,31 @@ No Windows, se as conversas não aparecerem, use **Selecionar executável do Cod
 
 **[Baixar a referência da voz Capri](https://raw.githubusercontent.com/Illumitech-Transofmacao-Digital-LTDA/llm-assistants-releases/main/assets/voices/capri/capri-voice-reference.wav)** — `capri-voice-reference.wav`, 9,93 segundos. É o mesmo áudio aprovado no projeto, sem conversão ou alteração. Consulte o [manifesto de integridade](assets/voices/capri/manifest.json).
 
-Para as ferramentas antigas da prévia 4, copie esse arquivo para a pasta dos scripts com o nome esperado por aquela versão: `capri-approved-reference.wav`. As novas ferramentas passam a incluir e localizar a referência automaticamente.
+**A partir da 0.4.0-preview.5, o aplicativo Windows e o ZIP Voice Tools já incluem esse áudio. Não precisa baixar, copiar ou renomear a referência.** Em versões antigas, atualize o aplicativo para usar o fluxo guiado.
 
 **O modelo de síntese precisa ser configurado na primeira utilização.** A fala exige um serviço local de síntese, um modelo e a referência aprovada da Capri. A referência aprovada está disponível neste catálogo; os pesos do modelo são baixados durante a configuração. Sem essa configuração, a personagem pode aparecer e mostrar o estado, mas não fala. Não há substituição automática por uma voz do sistema.
 
-- **Windows:** o ZIP `Capri-Voice-Tools-VERSAO.zip` contém o guia e os scripts de preparação. Exige Python 3.12 x64 com launcher `py` e a referência aprovada incluída nas novas ferramentas. Sem NVIDIA, use `setup-voice-cpu.cmd`; com NVIDIA compatível, `setup-voice-nvidia.cmd`. Depois, abra `start-voice.cmd` e mantenha sua janela aberta. O setup baixa vários GB de pacotes/modelo; em CPU uma nova fala pode levar minutos.
+- **Windows, prévia 5 ou posterior:** abra **Configurar voz…** no menu da Capri, escolha **CPU** se não tiver NVIDIA ou **NVIDIA** com GPU/driver compatíveis, e clique em **Instalar e iniciar voz**. A Capri prepara Python, dependências e modelo na sua conta, sem administrador. Baixa vários GB e pode levar vários minutos. Quando aparecer **A voz da Capri está pronta**, feche a janela e teste a demonstração. Nas próximas aberturas, o serviço inicia com a Capri. Em CPU, uma nova fala pode levar minutos.
+- **Alternativa manual Windows:** o ZIP `Capri-Voice-Tools-VERSAO.zip` inclui a referência em `reference/`. Com Python 3.12 x64 e launcher `py` já instalados, execute `setup-voice-cpu.cmd` ou `setup-voice-nvidia.cmd`, depois `start-voice.cmd`. Mantenha essa janela aberta. Não é necessário usar essa alternativa no fluxo guiado.
 - **Mac:** usa um serviço local MLX separado. O pacote do aplicativo preserva uma instalação de voz já configurada, mas ainda não oferece um instalador público completo desse serviço. Não prometemos voz imediata para uma instalação nova.
 
 O modo de voz F8 pertence ao Codex. A Capri se cala durante ele. Se pedir confirmação, feche o F8 antes de usar **F8 está fechado: liberar voz**. Isso não ativa o microfone nem aprova comandos.
 
 ### Erro de voz no Windows: o que fazer
 
-A **0.4.0-preview.4** explica a causa em vez de mostrar apenas `fetch failed`:
+A partir da **0.4.0-preview.4**, as falhas têm códigos específicos. A **prévia 5** acrescenta configuração pelo aplicativo:
 
 | Mensagem / código | Próximo passo |
 | --- | --- |
-| Voz precisa ser configurada (`setup`) | Baixe o ZIP de ferramentas da mesma release, instale Python 3.12 x64 com launcher e baixe a referência aprovada pelo link abaixo. Use `setup-voice-cpu.cmd` sem NVIDIA ou `setup-voice-nvidia.cmd` com NVIDIA compatível. |
-| Serviço indisponível (`offline`) | Execute `start-voice.cmd`, mantenha a janela aberta e aguarde `Capri voice preview ready`. |
-| Tempo excedido (`timeout`) | Confira a janela do serviço e teste uma frase curta; em CPU pode demorar. |
+| Voz precisa ser configurada (`setup`) | Abra **Configurar voz → Instalar e iniciar voz**. A referência já está incluída. |
+| Serviço indisponível (`offline`) | Abra **Configurar voz → Já configurei: iniciar voz**. Se ainda não concluiu a preparação, escolha instalar. |
+| Tempo excedido (`timeout`) | Teste uma frase curta e aguarde; em CPU pode demorar. |
 | Perfil ou voz incompatível (`profile` / `voice`) | Confira as ferramentas e a referência aprovada. A Capri não substitui a voz. |
-| Falha de síntese (`synthesis`) | Anote a mensagem na janela do serviço; ela contém a causa da geração ter falhado. |
+| Falha de síntese (`synthesis`) | Informe a versão, CPU/NVIDIA e a etapa que falhou. A mensagem resumida pode não revelar a causa. |
 
 Depois use **Demonstração (evento simulado)** no menu da Capri. Para narrar trabalho real, abra uma conversa no Codex e selecione-a no menu **Conversa acompanhada**. Nenhuma conversa selecionada significa que a Capri não acompanha o agente, mesmo com o serviço de voz funcionando.
 
-O teste recebido da prévia 3 mostrou personagem visível, mas falha de voz com a pasta do serviço ausente. Atualizar o aplicativo melhora o diagnóstico; **não instala o modelo nem a referência de voz**. Não compartilhe tokens, conversas ou gravações em relatos públicos.
+O teste recebido da prévia 3 mostrou personagem visível, mas falha de voz com a pasta do serviço ausente. Na prévia 5 a referência vem incluída; o modelo é baixado quando você escolhe **Instalar e iniciar voz**. Não compartilhe tokens, conversas ou gravações em relatos públicos.
 
 ## O que ela faz — e o que ainda falta
 
@@ -75,7 +76,7 @@ O aplicativo avisa quando há pacote mais novo para seu sistema e oferece **Abri
 - No Mac, substitua o aplicativo em Aplicativos.
 - No Windows, execute o novo instalador na mesma conta. Para a versão portátil, extraia em uma nova pasta.
 
-A instalação é manual: o aviso não baixa nem executa arquivos automaticamente e não reinicia a Capri. Configurações e voz ficam separadas do aplicativo. Leia as notas para saber se o serviço de voz também mudou. Guarde a versão anterior até confirmar que a nova funciona.
+A atualização do aplicativo é manual: o aviso não baixa nem executa arquivos automaticamente e não reinicia a Capri. Configurações e voz ficam separadas do aplicativo. Leia as notas para saber se o serviço de voz também mudou. Guarde a versão anterior até confirmar que a nova funciona.
 
 **Quem usa uma versão anterior a 0.4.0-preview.3 precisa baixar esta primeira atualização manualmente.** As instalações antigas ainda não têm o verificador.
 
@@ -101,9 +102,11 @@ Os pacotes atuais não têm certificado de assinatura de distribuição. O check
 
 ## Informações técnicas
 
+A preparação Windows usa uv 0.13.8 com SHA-256 fixo e CPython 3.12.16 x64 gerenciado, sem alterar PATH/registro. O download verifica a referência original e o bootstrap; dependências vêm de PyPI/PyTorch e o modelo de Hugging Face. A geração permanece local. Cancelar ou fechar a janela interrompe a preparação; o aplicativo encerra somente o serviço que ele próprio iniciou. A janela de configuração é comum, sem modal, e oculta a sobreposição enquanto aberta.
+
 O aplicativo é Electron/JavaScript; a síntese é local, MLX no Mac e PyTorch em CPU/CUDA no Windows. O catálogo usa GitHub Releases, tags SemVer e pacotes separados por plataforma/arquitetura. Publicar apenas uma tag não cria uma atualização: é necessária uma release publicada, com pacote e `SHA256SUMS` completos. Drafts e prévias fora do canal escolhido são ignorados.
 
-O verificador consulta a API pública por HTTPS, sem autenticação ou conteúdo da conversa. Tem prazo de 20 segundos, limite de 4 MiB, até 100 releases e controle de frequência. O GitHub recebe os metadados normais da conexão, como IP. A consulta automática pode ser desativada. Não há download, execução remota ou alteração de políticas de aprovação no verificador.
+O verificador consulta a API pública por HTTPS, sem autenticação ou conteúdo da conversa. Tem prazo de 20 segundos, limite de 4 MiB, até 100 releases e controle de frequência. O GitHub recebe os metadados normais da conexão, como IP. A consulta automática pode ser desativada. Não há download de instaladores, execução remota ou alteração de políticas de aprovação no verificador de atualizações. A preparação de voz é uma ação separada, iniciada pelo usuário.
 
 Os dados locais ficam em `~/Library/Application Support/CapriMacBook` no Mac e `%APPDATA%\LLMAssistants\Capri` no Windows. O serviço de voz Windows usa `%LOCALAPPDATA%\LLMAssistants\Voice`. Não apague essas pastas para atualizar o aplicativo.
 
@@ -119,4 +122,4 @@ As issues são públicas. Não envie tokens, `endpoint.json`, áudios privados, 
 
 Baseado em [Capri Desktop, de mochiiwuff](https://github.com/mochiiwuff/capri-desktop), com adaptações mantidas pela Illumitech. Créditos e avisos originais acompanham o aplicativo. Veja [LICENSE](LICENSE) e [avisos do aplicativo](APP-LICENSE).
 
-O código derivado mantém PolyForm Noncommercial 1.0.0 e os avisos MIT aplicáveis. Download público não concede autorização irrestrita para uso comercial. Direitos da personagem, imagens e gravações são separados dos direitos do código. Este catálogo não distribui gravações de referência nem pesos de modelos.
+O código derivado mantém PolyForm Noncommercial 1.0.0 e os avisos MIT aplicáveis. Download público não concede autorização irrestrita para uso comercial. Direitos da personagem, imagens e gravações são separados dos direitos do código. Este catálogo distribui somente a referência Capri explicitamente autorizada, com integridade registrada. Não distribui outras gravações nem pesos de modelos.
