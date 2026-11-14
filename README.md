@@ -38,9 +38,15 @@ A Capri mostra animações, acompanha uma conversa selecionada, reage ao estado 
 
 Conversa livre por microfone, resposta às aprovações pela personagem e controle do computador **ainda não fazem parte desta integração**. A personagem não é uma substituta completa da interface do Codex. Uma animação de conclusão indica fim da resposta, não prova que a tarefa deu certo.
 
+## Proteção da interação
+
+A prévia 0.4.0-preview.2 foi suspensa após um diálogo nativo bloquear a interação no Mac. Na substituta 0.4.0-preview.3, as informações de atualização aparecem no painel da personagem, sem diálogo modal nem foco de teclado, com botão Fechar e expiração em 30 segundos.
+
+A entrada de mouse é temporária: se a interface parar de renovar a concessão por 750 ms ou informar uma posição diferente da posição real do cursor, os cliques são liberados pelo processo principal. Falha do renderer oculta a sobreposição. **Control+Alt+Shift+C** oculta a Capri e libera entrada; use **Trazer Capri de volta** no menu para retornar. A lógica é compartilhada por Mac/Windows; a aceitação nativa Windows continua pendente. Não se trata de uma garantia contra todas as falhas de sistema ou drivers.
+
 ## Como atualizar
 
-A partir de **0.4.0-preview.2**, abra **Atualizações → Verificar atualizações** na Capri. A consulta é pública: **não exige conta GitHub, token ou GitHub CLI**.
+A partir de **0.4.0-preview.3**, abra **Atualizações → Verificar atualizações** na Capri. A consulta é pública: **não exige conta GitHub, token ou GitHub CLI**.
 
 O aplicativo avisa quando há pacote mais novo para seu sistema e oferece **Abrir release**. Baixe o arquivo indicado e `SHA256SUMS`, confira o checksum e encerre a Capri antes de instalar:
 
@@ -49,7 +55,7 @@ O aplicativo avisa quando há pacote mais novo para seu sistema e oferece **Abri
 
 A instalação é manual: o aviso não baixa nem executa arquivos automaticamente e não reinicia a Capri. Configurações e voz ficam separadas do aplicativo. Leia as notas para saber se o serviço de voz também mudou. Guarde a versão anterior até confirmar que a nova funciona.
 
-**Quem usa uma versão anterior a 0.4.0-preview.2 precisa baixar esta primeira atualização manualmente.** As instalações antigas ainda não têm o verificador.
+**Quem usa uma versão anterior a 0.4.0-preview.3 precisa baixar esta primeira atualização manualmente.** As instalações antigas ainda não têm o verificador.
 
 A consulta automática ocorre cerca de 30 segundos após abrir, quando está vencida, e aproximadamente a cada seis horas. Pode ser desligada no menu. O aviso da personagem é silencioso e espera uma pausa na fala/F8 e em perguntas pendentes; o menu continua disponível. Versões estáveis procuram estáveis; prévias incluem outras prévias por padrão. Você pode mudar **Incluir prévias de teste**.
 
