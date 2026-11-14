@@ -1,10 +1,12 @@
+> Prévia 12: novas falas e gestos, perguntas no HUD e diagnóstico detalhado da preparação de voz Windows. Se a instalação falhar, anote etapa/causa/saída; código 1 sozinho não identifica problema de hardware. [Guia](docs/windows-preview.md).
+
 # LLM Assistants — downloads e atualizações
 
 **Uma companheira animada para acompanhar seu trabalho com IA.** A Capri fica na área de trabalho, reage ao que acontece na conversa escolhida do Codex e pode narrar trechos em português quando a voz local está configurada.
 
 Este é o catálogo público mantido pela Illumitech: aqui você encontra versões, pacotes, instruções e espaço para relatar problemas. O repositório de desenvolvimento e seu histórico permanecem privados. Os aplicativos Electron distribuídos aqui incluem código empacotado que pode ser inspecionado.
 
-**Prévia 0.4.0-preview.7:** perguntas e aprovações por clique/texto, reações às fases de trabalho e integração experimental com o Codex App Windows. A ponte precisa de ativação explícita e aceitação no computador de destino. [Guia do App](docs/desktop-integration.md) · [Respostas pela Capri](docs/interactive-requests.md).
+**Prévia 0.4.0-preview.12:** perguntas e aprovações por clique/texto, reações às fases de trabalho e integração experimental com o Codex App Windows. A ponte precisa de ativação explícita e aceitação no computador de destino. [Guia do App](docs/desktop-integration.md) · [Respostas pela Capri](docs/interactive-requests.md).
 
 **[Abrir downloads e notas das versões](https://github.com/Illumitech-Transofmacao-Digital-LTDA/llm-assistants-releases/releases)**
 
