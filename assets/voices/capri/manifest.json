@@ -1,0 +1,9 @@
+{
+  "file": "capri-voice-reference.wav",
+  "sha256": "8ca29cad94fccac2c081a57bc4e74ecf16c4a479f2ef8c389f7829db1d84cb26",
+  "bytes": 953360,
+  "sample_rate": 24000,
+  "channels": 1,
+  "format": "IEEE float WAV",
+  "seconds": 9.93
+}

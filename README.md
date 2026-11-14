@@ -27,9 +27,13 @@ No Windows, se as conversas não aparecerem, use **Selecionar executável do Cod
 
 <a id="voz-no-windows"></a>
 
-**O aplicativo não inclui uma voz pronta.** A fala exige um serviço local de síntese, um modelo e a referência autorizada da Capri. As gravações e os pesos não são distribuídos neste catálogo. Sem essa configuração, a personagem pode aparecer e mostrar o estado, mas não fala. Não há substituição automática por uma voz do sistema.
+**[Baixar a referência da voz Capri](https://raw.githubusercontent.com/Illumitech-Transofmacao-Digital-LTDA/llm-assistants-releases/main/assets/voices/capri/capri-voice-reference.wav)** — `capri-voice-reference.wav`, 9,93 segundos. É o mesmo áudio aprovado no projeto, sem conversão ou alteração. Consulte o [manifesto de integridade](assets/voices/capri/manifest.json).
 
-- **Windows:** o ZIP `Capri-Voice-Tools-VERSAO.zip` contém o guia e os scripts de preparação. Exige Python 3.12 x64 com launcher `py` e o arquivo de referência autorizado. Sem NVIDIA, use `setup-voice-cpu.cmd`; com NVIDIA compatível, `setup-voice-nvidia.cmd`. Depois, abra `start-voice.cmd` e mantenha sua janela aberta. O setup baixa vários GB de pacotes/modelo; em CPU uma nova fala pode levar minutos.
+Para as ferramentas antigas da prévia 4, copie esse arquivo para a pasta dos scripts com o nome esperado por aquela versão: `capri-approved-reference.wav`. As novas ferramentas passam a incluir e localizar a referência automaticamente.
+
+**O modelo de síntese precisa ser configurado na primeira utilização.** A fala exige um serviço local de síntese, um modelo e a referência aprovada da Capri. A referência aprovada está disponível neste catálogo; os pesos do modelo são baixados durante a configuração. Sem essa configuração, a personagem pode aparecer e mostrar o estado, mas não fala. Não há substituição automática por uma voz do sistema.
+
+- **Windows:** o ZIP `Capri-Voice-Tools-VERSAO.zip` contém o guia e os scripts de preparação. Exige Python 3.12 x64 com launcher `py` e a referência aprovada incluída nas novas ferramentas. Sem NVIDIA, use `setup-voice-cpu.cmd`; com NVIDIA compatível, `setup-voice-nvidia.cmd`. Depois, abra `start-voice.cmd` e mantenha sua janela aberta. O setup baixa vários GB de pacotes/modelo; em CPU uma nova fala pode levar minutos.
 - **Mac:** usa um serviço local MLX separado. O pacote do aplicativo preserva uma instalação de voz já configurada, mas ainda não oferece um instalador público completo desse serviço. Não prometemos voz imediata para uma instalação nova.
 
 O modo de voz F8 pertence ao Codex. A Capri se cala durante ele. Se pedir confirmação, feche o F8 antes de usar **F8 está fechado: liberar voz**. Isso não ativa o microfone nem aprova comandos.
@@ -40,7 +44,7 @@ A **0.4.0-preview.4** explica a causa em vez de mostrar apenas `fetch failed`:
 
 | Mensagem / código | Próximo passo |
 | --- | --- |
-| Voz precisa ser configurada (`setup`) | Baixe o ZIP de ferramentas da mesma release, instale Python 3.12 x64 com launcher e obtenha a referência autorizada da Capri separadamente. Use `setup-voice-cpu.cmd` sem NVIDIA ou `setup-voice-nvidia.cmd` com NVIDIA compatível. |
+| Voz precisa ser configurada (`setup`) | Baixe o ZIP de ferramentas da mesma release, instale Python 3.12 x64 com launcher e baixe a referência aprovada pelo link abaixo. Use `setup-voice-cpu.cmd` sem NVIDIA ou `setup-voice-nvidia.cmd` com NVIDIA compatível. |
 | Serviço indisponível (`offline`) | Execute `start-voice.cmd`, mantenha a janela aberta e aguarde `Capri voice preview ready`. |
 | Tempo excedido (`timeout`) | Confira a janela do serviço e teste uma frase curta; em CPU pode demorar. |
 | Perfil ou voz incompatível (`profile` / `voice`) | Confira as ferramentas e a referência aprovada. A Capri não substitui a voz. |

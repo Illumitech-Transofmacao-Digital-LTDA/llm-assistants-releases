@@ -4,3 +4,5 @@
 *.dmg
 *.wav
 *.safetensors
+
+!assets/voices/capri/capri-voice-reference.wav
