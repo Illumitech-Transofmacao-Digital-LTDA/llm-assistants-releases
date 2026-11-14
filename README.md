@@ -19,11 +19,13 @@ Este é o catálogo público mantido pela Illumitech: aqui você encontra versõ
 | Windows 10/11 x64 | `Capri-Setup-VERSAO-x64.exe` | Execute o instalador na sua conta |
 | Windows x64, sem instalar | `Capri-Windows-VERSAO-x64.zip` | Extraia tudo em uma pasta e abra `Capri.exe` |
 
-Mac Intel, Windows ARM64 e sessões pelo WSL não são atendidos por estes pacotes. A adaptação Windows é uma prévia: ainda depende de testes em computadores reais, com e sem NVIDIA. Consulte sempre os limites de cada release.
+Mac Intel, Windows ARM64 e sessões pelo WSL não são atendidos por estes pacotes. A adaptação Windows é uma prévia: a versão 0.4.0-preview.3 abriu e ficou visível no Windows 10 x64 segundo um teste relatado. Voz, CPU/NVIDIA e a versão atual ainda precisam de validação nesses computadores. Consulte sempre os limites de cada release.
 
 No Windows, se as conversas não aparecerem, use **Selecionar executável do Codex…** e escolha o `codex.exe` da instalação nativa. É necessário que o Codex instalado ofereça o proxy local `app-server proxy`. A Capri não inicia um novo agente nem altera suas permissões.
 
 ### Por que a Capri não está falando?
+
+<a id="voz-no-windows"></a>
 
 **O aplicativo não inclui uma voz pronta.** A fala exige um serviço local de síntese, um modelo e a referência autorizada da Capri. As gravações e os pesos não são distribuídos neste catálogo. Sem essa configuração, a personagem pode aparecer e mostrar o estado, mas não fala. Não há substituição automática por uma voz do sistema.
 
@@ -31,6 +33,22 @@ No Windows, se as conversas não aparecerem, use **Selecionar executável do Cod
 - **Mac:** usa um serviço local MLX separado. O pacote do aplicativo preserva uma instalação de voz já configurada, mas ainda não oferece um instalador público completo desse serviço. Não prometemos voz imediata para uma instalação nova.
 
 O modo de voz F8 pertence ao Codex. A Capri se cala durante ele. Se pedir confirmação, feche o F8 antes de usar **F8 está fechado: liberar voz**. Isso não ativa o microfone nem aprova comandos.
+
+### Erro de voz no Windows: o que fazer
+
+A **0.4.0-preview.4** explica a causa em vez de mostrar apenas `fetch failed`:
+
+| Mensagem / código | Próximo passo |
+| --- | --- |
+| Voz precisa ser configurada (`setup`) | Baixe o ZIP de ferramentas da mesma release, instale Python 3.12 x64 com launcher e obtenha a referência autorizada da Capri separadamente. Use `setup-voice-cpu.cmd` sem NVIDIA ou `setup-voice-nvidia.cmd` com NVIDIA compatível. |
+| Serviço indisponível (`offline`) | Execute `start-voice.cmd`, mantenha a janela aberta e aguarde `Capri voice preview ready`. |
+| Tempo excedido (`timeout`) | Confira a janela do serviço e teste uma frase curta; em CPU pode demorar. |
+| Perfil ou voz incompatível (`profile` / `voice`) | Confira as ferramentas e a referência aprovada. A Capri não substitui a voz. |
+| Falha de síntese (`synthesis`) | Anote a mensagem na janela do serviço; ela contém a causa da geração ter falhado. |
+
+Depois use **Demonstração (evento simulado)** no menu da Capri. Para narrar trabalho real, abra uma conversa no Codex e selecione-a no menu **Conversa acompanhada**. Nenhuma conversa selecionada significa que a Capri não acompanha o agente, mesmo com o serviço de voz funcionando.
+
+O teste recebido da prévia 3 mostrou personagem visível, mas falha de voz com a pasta do serviço ausente. Atualizar o aplicativo melhora o diagnóstico; **não instala o modelo nem a referência de voz**. Não compartilhe tokens, conversas ou gravações em relatos públicos.
 
 ## O que ela faz — e o que ainda falta
 
@@ -42,7 +60,7 @@ Conversa livre por microfone, resposta às aprovações pela personagem e contro
 
 A prévia 0.4.0-preview.2 foi suspensa após um diálogo nativo bloquear a interação no Mac. Na substituta 0.4.0-preview.3, as informações de atualização aparecem no painel da personagem, sem diálogo modal nem foco de teclado, com botão Fechar e expiração em 30 segundos.
 
-A entrada de mouse é temporária: se a interface parar de renovar a concessão por 750 ms ou informar uma posição diferente da posição real do cursor, os cliques são liberados pelo processo principal. Falha do renderer oculta a sobreposição. **Control+Alt+Shift+C** oculta a Capri e libera entrada; use **Trazer Capri de volta** no menu para retornar. A lógica é compartilhada por Mac/Windows; a aceitação nativa Windows continua pendente. Não se trata de uma garantia contra todas as falhas de sistema ou drivers.
+A entrada de mouse é temporária: se a interface parar de renovar a concessão por 750 ms ou informar uma posição diferente da posição real do cursor, os cliques são liberados pelo processo principal. Falha do renderer oculta a sobreposição e cancela a voz. A partir da prévia 4, **Trazer Capri de volta** recarrega a interface com limite de 15 segundos e só a exibe depois da confirmação de prontidão; não há reinício automático em sequência. **Control+Alt+Shift+C** oculta a Capri e libera entrada; use **Trazer Capri de volta** no menu para retornar. A lógica é compartilhada por Mac/Windows; a aceitação nativa Windows continua pendente. Não se trata de uma garantia contra todas as falhas de sistema ou drivers.
 
 ## Como atualizar
 
