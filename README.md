@@ -4,6 +4,8 @@
 
 Este é o catálogo público mantido pela Illumitech: aqui você encontra versões, pacotes, instruções e espaço para relatar problemas. O repositório de desenvolvimento e seu histórico permanecem privados. Os aplicativos Electron distribuídos aqui incluem código empacotado que pode ser inspecionado.
 
+**Prévia 0.4.0-preview.7:** perguntas e aprovações por clique/texto, reações às fases de trabalho e integração experimental com o Codex App Windows. A ponte precisa de ativação explícita e aceitação no computador de destino. [Guia do App](docs/desktop-integration.md) · [Respostas pela Capri](docs/interactive-requests.md).
+
 **[Abrir downloads e notas das versões](https://github.com/Illumitech-Transofmacao-Digital-LTDA/llm-assistants-releases/releases)**
 
 ## Nunca usei: por onde começo?
@@ -21,7 +23,7 @@ Este é o catálogo público mantido pela Illumitech: aqui você encontra versõ
 
 Mac Intel, Windows ARM64 e sessões pelo WSL não são atendidos por estes pacotes. A adaptação Windows é uma prévia: a versão 0.4.0-preview.3 abriu e ficou visível no Windows 10 x64 segundo um teste relatado. Voz, CPU/NVIDIA e a versão atual ainda precisam de validação nesses computadores. Consulte sempre os limites de cada release.
 
-No Windows, se as conversas não aparecerem, use **Selecionar executável do Codex…** e escolha o `codex.exe` da instalação nativa. É necessário que o Codex instalado ofereça o proxy local `app-server proxy`. A Capri não inicia um novo agente nem altera suas permissões.
+No Windows, o Codex App pode usar um servidor separado do CLI, mesmo com a mesma pasta de dados. O proxy `app-server proxy` só acompanha conversas do servidor ao qual está conectado. Para o App, a prévia 7 oferece uma [ponte experimental de inicialização](docs/desktop-integration.md), com o binário incluído no Desktop e sem aprovações automáticas. Não basta trocar o executável do proxy.
 
 ### Por que a Capri não está falando?
 
@@ -45,7 +47,7 @@ Na **0.4.0-preview.6**, `notLoaded` aparece como **Proxy conectado · chat não 
 
 Abra **Conversa acompanhada → Atualizar conversas abertas**. Se o chat desejado não aparecer, use **Copiar diagnóstico de conexão** e informe também a versão do Codex Desktop. O diagnóstico contém estados e versão, sem conteúdo, token, caminho pessoal ou ID do chat. Somente se o Desktop usar outra pasta de dados, escolha-a em **Pasta de dados do Codex…**; **Usar pasta padrão do Codex** desfaz essa seleção. Não escolha a pasta do projeto.
 
-O teste recebido da prévia 5 confirmou geração CPU e áudio no fone no Windows 10 x64. O mesmo teste encontrou chat ativo no Desktop, mas não carregado no proxy. A causa dessa diferença ainda está em investigação; esta correção não confirma narração desse chat nem valida NVIDIA.
+O teste recebido da prévia 5 confirmou geração CPU e áudio no fone no Windows 10 x64. O mesmo teste encontrou chat ativo no Desktop, mas não carregado no proxy. A investigação posterior identificou dois servidores: Desktop 0.167.0-alpha.4.1 por stdio e daemon 0.169.0 separado. A prévia 7 acrescenta a ponte para o backend do App, mas seu funcionamento completo no Windows ainda precisa de teste. Isso não valida NVIDIA.
 
 ### Erro de voz no Windows: o que fazer
 
@@ -67,7 +69,7 @@ O teste recebido da prévia 3 mostrou personagem visível, mas falha de voz com 
 
 A Capri mostra animações, acompanha uma conversa selecionada, reage ao estado observado e pode narrar novos trechos públicos. A legenda acompanha o início da fala. Ela não lê raciocínio interno, código ou saídas de ferramentas.
 
-Conversa livre por microfone, resposta às aprovações pela personagem e controle do computador **ainda não fazem parte desta integração**. A personagem não é uma substituta completa da interface do Codex. Uma animação de conclusão indica fim da resposta, não prova que a tarefa deu certo.
+A prévia 7 permite responder perguntas compatíveis e revisar aprovações por clique/texto com confirmação explícita, sempre na conversa conectada. Respostas resolvidas, expiradas ou de outra conexão perdem seus controles. Conversa livre por microfone e controle autônomo do computador **ainda não fazem parte desta integração**. A personagem não é uma substituta completa da interface do Codex. Uma animação de conclusão indica fim da resposta, não prova que a tarefa deu certo.
 
 ## Proteção da interação
 
